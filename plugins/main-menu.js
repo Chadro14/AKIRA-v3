@@ -1,1 +1,140 @@
-const _0x264caa=_0x4386;function _0x4386(_0xf96907,_0x2efccc){const _0x25825a=_0x2582();return _0x4386=function(_0x43861e,_0x28fa69){_0x43861e=_0x43861e-0x180;let _0x6a2c6b=_0x25825a[_0x43861e];return _0x6a2c6b;},_0x4386(_0xf96907,_0x2efccc);}(function(_0x329b32,_0x243f74){const _0x5b3be3=_0x4386,_0x455959=_0x329b32();while(!![]){try{const _0x14fb09=-parseInt(_0x5b3be3(0x1a4))/0x1*(parseInt(_0x5b3be3(0x18a))/0x2)+parseInt(_0x5b3be3(0x199))/0x3*(parseInt(_0x5b3be3(0x1a3))/0x4)+parseInt(_0x5b3be3(0x1a6))/0x5*(parseInt(_0x5b3be3(0x1c6))/0x6)+parseInt(_0x5b3be3(0x1bd))/0x7*(parseInt(_0x5b3be3(0x18e))/0x8)+-parseInt(_0x5b3be3(0x186))/0x9+parseInt(_0x5b3be3(0x1b9))/0xa+parseInt(_0x5b3be3(0x19b))/0xb*(-parseInt(_0x5b3be3(0x1b3))/0xc);if(_0x14fb09===_0x243f74)break;else _0x455959['push'](_0x455959['shift']());}catch(_0x3b9bb7){_0x455959['push'](_0x455959['shift']());}}}(_0x2582,0x1c071));import{generateWAMessageFromContent}from'@whiskeysockets/baileys';const {proto,generateWAMessage,areJidsSameUser,prepareWAMessageMedia}=(await import(_0x264caa(0x1b6)))['default'];import{createHash}from'crypto';import _0x283da6 from'awesome-phonenumber';import{canLevelUp,xpRange}from'../lib/levelling.js';import _0x3f7e2e from'node-fetch';import _0x233794 from'fs';const {levelling}=_0x264caa(0x1b2);import _0xa1ff4d from'moment-timezone';import{promises}from'fs';import{join}from'path';const time=_0xa1ff4d['tz']('Africa/Cameroon')['format']('HH');let wib=_0xa1ff4d['tz'](_0x264caa(0x188))[_0x264caa(0x193)](_0x264caa(0x19f)),handler=async(_0x5433c1,{conn:_0x1aa855,usedPrefix:_0x33c259,command:_0x40827a})=>{const _0x23844f=_0x264caa;let _0x1f54f0=new Date(new Date()+0x36ee80),_0x473d76='en',_0x37b1a4=_0x1f54f0[_0x23844f(0x194)](_0x473d76,{'weekday':'long'}),_0x1fcb63=_0x1f54f0['toLocaleDateString'](_0x473d76,{'day':'numeric','month':_0x23844f(0x19d),'year':_0x23844f(0x1c4)}),_0x485cd8=process[_0x23844f(0x19c)]()*0x3e8,_0x302d07=clockString(_0x485cd8),_0x43ed71=_0x5433c1['quoted']?_0x5433c1[_0x23844f(0x1c0)][_0x23844f(0x185)]:_0x5433c1[_0x23844f(0x198)]&&_0x5433c1[_0x23844f(0x198)][0x0]?_0x5433c1['mentionedJid'][0x0]:_0x5433c1[_0x23844f(0x1ab)]?_0x1aa855[_0x23844f(0x1ba)][_0x23844f(0x1c5)]:_0x5433c1['sender'];if(!(_0x43ed71 in global['db'][_0x23844f(0x1a8)]['users']))throw'✳️\x20The\x20user\x20is\x20not\x20found\x20in\x20my\x20database';let _0x47274a=global['db']['data'][_0x23844f(0x18d)][_0x5433c1[_0x23844f(0x185)]],{name:_0x5ac712,exp:_0x1c08ce,diamond:_0x480ad6,lastclaim:_0x674c09,registered:_0x1666ec,regTime:_0x1030cb,age:_0x1d2f3c,level:_0x3d1df8,role:_0x5b66eb,warn:_0x4841e9}=global['db']['data'][_0x23844f(0x18d)][_0x43ed71],{min:_0x1727d2,xp:_0xdc54b1,max:_0x339013}=xpRange(_0x47274a[_0x23844f(0x1b1)],global['multiplier']),_0x445877=_0x1aa855[_0x23844f(0x197)](_0x43ed71),_0xd02b14=_0x339013-_0xdc54b1,_0x30c111=global[_0x23844f(0x1a5)][_0x23844f(0x1b4)](_0x43ed71[_0x23844f(0x1c1)]`@`[0x0]),_0x293d1f=createHash(_0x23844f(0x192))[_0x23844f(0x1a2)](_0x43ed71)[_0x23844f(0x1c9)]('hex'),_0x3736ec=Object[_0x23844f(0x182)](global['db'][_0x23844f(0x1a8)]['users'])['length'],_0x26305d=Object[_0x23844f(0x182)](global['db'][_0x23844f(0x1a8)][_0x23844f(0x18d)])['filter'](_0x5cce01=>_0x5cce01[_0x23844f(0x1a1)]==!![])[_0x23844f(0x181)],_0x5f15ad=String['fromCharCode'](0x200e),_0x1f0147=_0x5f15ad[_0x23844f(0x1a0)](0x352),_0x1c2144=ucapan(),_0x5c5acb='@'+_0x5433c1['sender'][_0x23844f(0x1c1)]('@s.whatsapp.net')[0x0],_0x163373='\x0a\x20\x20┏──⟬\x20*QUEEN\x20ANNA*\x20⟭\x0a\x20\x20││ᯤ\x20'+_0x33c259+_0x23844f(0x1b5)+_0x33c259+_0x23844f(0x1b0)+_0x33c259+_0x23844f(0x1ac)+_0x33c259+_0x23844f(0x1aa)+_0x33c259+_0x23844f(0x1ad)+_0x33c259+_0x23844f(0x1c2)+_0x33c259+_0x23844f(0x1ca)+_0x33c259+_0x23844f(0x1af)+_0x33c259+_0x23844f(0x1c3),_0x5a2a4a=generateWAMessageFromContent(_0x5433c1[_0x23844f(0x1b8)],{'viewOnceMessage':{'message':{'messageContextInfo':{'deviceListMetadata':{},'deviceListMetadataVersion':0x2},'interactiveMessage':proto[_0x23844f(0x1a9)]['InteractiveMessage']['create']({'body':proto['Message'][_0x23844f(0x183)][_0x23844f(0x18b)][_0x23844f(0x1be)]({'text':_0x163373}),'footer':proto[_0x23844f(0x1a9)][_0x23844f(0x183)][_0x23844f(0x190)][_0x23844f(0x1be)]({'text':'ᴍᴜʟᴛɪ\x20ᴅᴇᴠɪᴄᴇ\x20ᴡʜᴀᴛꜱᴀᴘᴘ\x20ʙᴏᴛ'}),'header':proto[_0x23844f(0x1a9)][_0x23844f(0x183)][_0x23844f(0x18c)][_0x23844f(0x1be)]({...await prepareWAMessageMedia({'image':{'url':_0x23844f(0x187)}},{'upload':_0x1aa855[_0x23844f(0x195)]}),'title':null,'subtitle':null,'hasMediaAttachment':![]}),'nativeFlowMessage':proto['Message'][_0x23844f(0x183)][_0x23844f(0x196)][_0x23844f(0x1be)]({'buttons':[{'name':'single_select','buttonParamsJson':_0x23844f(0x189)},{'name':_0x23844f(0x1ae),'buttonParamsJson':_0x23844f(0x1bc)},{'name':'cta_url','buttonParamsJson':'{\x22display_text\x22:\x22ᴏᴡɴᴇʀ\x22,\x22url\x22:\x22https://wa.me/message/7JQKSN6B3LLKF1\x22}'},{'name':_0x23844f(0x1bb),'buttonParamsJson':_0x23844f(0x180)}]})})}}},{});await _0x1aa855[_0x23844f(0x1bf)](_0x5a2a4a['key']['remoteJid'],_0x5a2a4a[_0x23844f(0x191)],{'messageId':_0x5a2a4a['key']['id']});};handler['help']=['main'],handler[_0x264caa(0x19a)]=[_0x264caa(0x184)],handler['command']=['menu',_0x264caa(0x1a7),'h','commands'];export default handler;function clockString(_0xd17f23){const _0x231fb3=_0x264caa;let _0x453b04=isNaN(_0xd17f23)?'--':Math[_0x231fb3(0x1b7)](_0xd17f23/0x36ee80),_0x2ee2b7=isNaN(_0xd17f23)?'--':Math[_0x231fb3(0x1b7)](_0xd17f23/0xea60)%0x3c,_0x5275c8=isNaN(_0xd17f23)?'--':Math[_0x231fb3(0x1b7)](_0xd17f23/0x3e8)%0x3c;return[_0x453b04,_0x2ee2b7,_0x5275c8]['map'](_0x48ce2f=>_0x48ce2f['toString']()['padStart'](0x2,0x0))[_0x231fb3(0x19e)](':');}function ucapan(){const _0x20712c=_0x264caa,_0x2e4acd=_0xa1ff4d['tz'](_0x20712c(0x188))[_0x20712c(0x193)]('HH');let _0x5a2954='happy\x20early\x20in\x20the\x20day☀️';return _0x2e4acd>=0x4&&(_0x5a2954=_0x20712c(0x18f)),_0x2e4acd>=0xa&&(_0x5a2954=_0x20712c(0x1c7)),_0x2e4acd>=0xf&&(_0x5a2954='Good\x20Afternoon\x20🌇'),_0x2e4acd>=0x12&&(_0x5a2954=_0x20712c(0x1c8)),_0x5a2954;}function _0x2582(){const _0x340109=['Good\x20Night\x20🌙','digest','ʟᴏɢᴏ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','{\x22display_text\x22:\x22ꜱᴄʀɪᴘᴛ\x22,\x22url\x22:\x22https://github.com/toge012345/QUEEN-ANNA\x22}','length','values','InteractiveMessage','group','sender','292500NJuTmU','https://i.ibb.co/Btk5dcq/ANNA.jpg','Africa/Cameroon','{\x22title\x22:\x22ʟɪꜱᴛᴇ\x20ᴍᴇɴᴜ\x22,\x22sections\x22:[{\x22title\x22:\x22HERE\x20IS\x20ALL\x20LIST\x20OF\x20MENU\x22,\x22highlight_label\x22:\x22𝚀𝚄𝙴𝙴𝙽\x20𝙰𝙽𝙽𝙰\x22,\x22rows\x22:[{\x22header\x22:\x22\x22,\x22title\x22:\x22🤖\x20Bot\x20Menu\x22,\x22description\x22:\x22The\x20Bot\x27s\x20secret\x20control\x20panel.\x20What\x27s\x20your\x20command,\x20oh\x20great\x20one?\x22,\x22id\x22:\x22.botmenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22👑\x20Owner\x20Menu\x22,\x22description\x22:\x22The\x20sacred\x20scroll\x20only\x20for\x20the\x20chosen\x20one.\x20Yep,\x20that\x27s\x20you,\x20Boss!\x22,\x22id\x22:\x22.ownermenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🧑‍🤝‍🧑\x20Group\x20Menu\x22,\x22description\x22:\x22Group\x20shenanigans\x20central!\x20Unite,\x20chat,\x20conquer!\x22,\x22id\x22:\x22.groupmenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22📥\x20Download\x20Menu\x22,\x22description\x22:\x22\x27DL\x27\x20stands\x20for\x20\x27Delicious\x20Loot\x27.\x20Come\x20grab\x20your\x20goodies!\x22,\x22id\x22:\x22.dlmenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🎉\x20Fun\x20Menu\x22,\x22description\x22:\x22The\x20bot\x27s\x20party\x20hat.\x20Games,\x20jokes\x20and\x20instant\x20ROFLs.\x20Let\x27s\x20get\x20this\x20party\x20started!\x22,\x22id\x22:\x22.funmenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22💰\x20Economy\x20Menu\x22,\x22description\x22:\x22Bling\x20bling!\x20Your\x20personal\x20vault\x20of\x20virtual\x20economy.\x20Spend\x20or\x20save?\x20Choose\x20wisely!\x22,\x22id\x22:\x22.economymenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🎮\x20Game\x20Menu\x22,\x22description\x22:\x22Enter\x20the\x20gaming\x20arena.\x20May\x20the\x20odds\x20be\x20ever\x20in\x20your\x20favor!\x22,\x22id\x22:\x22.gamemenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🎨\x20Sticker\x20Menu\x22,\x22description\x22:\x22A\x20rainbow\x20of\x20stickers\x20for\x20your\x20inner\x20artist.\x20Make\x20your\x20chats\x20pop!\x22,\x22id\x22:\x22.stickermenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🧰\x20Tool\x20Menu\x22,\x22description\x22:\x22Your\x20handy-dandy\x20toolkit.\x20What\x27s\x20your\x20pick,\x20genius?\x22,\x22id\x22:\x22.toolmenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🎩\x20Logo\x20Menu\x22,\x22description\x22:\x22Create\x20a\x20logo\x20that\x20screams\x20YOU.\x20Or\x20whispers.\x20You\x20choose\x20the\x20volume.\x22,\x22id\x22:\x22.logomenu\x22},{\x22header\x22:\x22\x22,\x22title\x22:\x22🌙\x20NSFW\x20Menu\x22,\x22description\x22:\x22The\x20After\x20Dark\x20menu.\x20But\x20remember,\x20sharing\x20adult\x20secrets\x20must\x20be\x20consent-based.\x22,\x22id\x22:\x22.nsfwmenu\x22}]}]}','350hPrHaN','Body','Header','users','80CKAeFT','Good\x20Morning\x20🥱','Footer','message','md5','format','toLocaleDateString','waUploadToServer','NativeFlowMessage','getName','mentionedJid','57Brquba','tags','18986TlNMwI','uptime','long','join','HH:mm:ss','repeat','registered','update','23924ohNAJn','895PJSpLG','prems','45cKKeDd','help','data','Message','ғᴜɴ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','fromMe','ɢʀᴏᴜᴘ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','ᴅᴏᴡɴʟᴏᴀᴅᴇʀ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','quick_reply','sᴛɪᴄᴋᴇʀ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','ᴏᴡɴᴇʀ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','level','../lib/levelling.js','516uNvrZz','includes','ʙᴏᴛ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','@whiskeysockets/baileys','floor','chat','45320xkHyre','user','cta_url','{\x22display_text\x22:\x22ꜱᴜᴘᴘᴏʀᴛ\x20ɢʀᴏᴜᴘ\x22,\x22id\x22:\x22.groups\x22}','99974vfIZMU','create','relayMessage','quoted','split','ɢᴀᴍᴇ\x20ᴍᴇɴᴜ\x0a\x20\x20││ᯤ\x20','ᴛᴏᴏʟs\x20ᴍᴇɴᴜ\x0a\x20\x20┗───────────────┛','numeric','jid','78102DiNMUj','Good\x20Afternoon\x20🫠'];_0x2582=function(){return _0x340109;};return _0x2582();}
+// AKIRA V3 — menu unique, classe par commandes effectivement chargees.
+const BANNER = [
+  '██╗  ██╗ █████╗ ██╗  ██╗██╗██████╗  █████╗',
+  '██║ ██╔╝██╔══██╗██║ ██╔╝██║██╔══██╗██╔══██╗',
+  '█████╔╝ ███████║█████╔╝ ██║██████╔╝███████║',
+  '██╔═██╗ ██╔══██║██╔═██╗ ██║██╔══██╗██╔══██║',
+  '██║  ██╗██║  ██║██║  ██╗██║██║  ██║██║  ██║',
+  '╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝',
+].join('\n');
+
+const RULES = [
+  ['INFORMATIONS', ['main', 'info', 'information', 'bot', 'help', 'general']],
+  ['TELECHARGEMENTS', ['download', 'downloader', 'dl', 'music', 'youtube', 'instagram', 'tiktok']],
+  ['RECHERCHE', ['search', 'internet', 'google', 'pinterest', 'web']],
+  ['GROUPES', ['group', 'groups', 'gc', 'gp', 'admin']],
+  ['INTELLIGENCE ARTIFICIELLE', ['ai', 'ia', 'gpt', 'chatbot']],
+  ['STICKERS', ['sticker', 'stickers']],
+  ['AUDIO & MUSIQUE', ['audio', 'sound', 'voice', 'effect']],
+  ['MEDIAS & CONVERSION', ['convert', 'converter', 'video', 'image', 'media']],
+  ['ANIME & PERSONNAGES', ['anime', 'otaku', 'character', 'waifu']],
+  ['JEUX', ['game', 'games', 'rpg']],
+  ['DIVERTISSEMENT', ['fun', 'random', 'meme', 'reaction']],
+  ['ECONOMIE', ['economy', 'economics', 'economia', 'bank']],
+  ['LOGOS & TEXTE', ['logo', 'text', 'textpro', 'maker', 'style']],
+  ['OUTILS', ['tools', 'tool', 'utility', 'util', 'other']],
+  ['CONTENU ADULTE', ['nsfw', 'adult']],
+  ['PROPRIETAIRE', ['owner', 'rowner', 'creator', 'mods']],
+];
+const VALID = /^[a-z0-9][a-z0-9_-]{0,48}$/i;
+
+function regexOptions(pattern) {
+  if (!(pattern instanceof RegExp)) return [];
+  let s = pattern.source.replace(/^\^/, '').replace(/\$$/, '');
+  if (s.startsWith('(?:') && s.endsWith(')')) s = s.slice(3, -1);
+  else if (s.startsWith('(') && s.endsWith(')')) s = s.slice(1, -1);
+  return /^[\w-]+(?:\|[\w-]+)*$/.test(s) ? s.split('|') : [];
+}
+
+function accepts(plugin, name) {
+  const specs = Array.isArray(plugin.command) ? plugin.command : [plugin.command];
+  return specs.some(spec => {
+    if (typeof spec === 'string') return spec.toLowerCase() === name;
+    if (spec instanceof RegExp) {
+      spec.lastIndex = 0;
+      return spec.test(name);
+    }
+    return false;
+  });
+}
+
+function commandsFor(plugin) {
+  const specs = Array.isArray(plugin.command) ? plugin.command : [plugin.command];
+  const commands = specs.flatMap(spec =>
+    typeof spec === 'string' ? [spec] : regexOptions(spec)
+  );
+  // Pour les regex complexes, n'utiliser l'aide que si elle correspond vraiment.
+  if (!commands.length) {
+    for (const help of Array.isArray(plugin.help) ? plugin.help : []) {
+      if (typeof help !== 'string') continue;
+      const name = help.trim().replace(/^\W+/, '').split(/[\s<\[({]/)[0].toLowerCase();
+      if (VALID.test(name) && accepts(plugin, name)) commands.push(name);
+    }
+  }
+  return [...new Set(commands.map(s => String(s).toLowerCase())
+    .filter(s => VALID.test(s) && accepts(plugin, s)))];
+}
+
+function categoryFor(plugin, file) {
+  const tags = (Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags])
+    .filter(Boolean).map(s => String(s).toLowerCase().trim());
+  if (plugin.owner || plugin.rowner || /^owner-/.test(file)) return 'PROPRIETAIRE';
+  for (const [label, keys] of RULES) {
+    if (tags.some(tag => keys.includes(tag))) return label;
+  }
+  const prefix = file.replace(/^plugins\//, '').toLowerCase().split(/[-_.]/)[0];
+  for (const [label, keys] of RULES) {
+    if (keys.includes(prefix)) return label;
+  }
+  return 'AUTRES COMMANDES';
+}
+
+export function buildAkiraMenu(plugins, prefix = '.') {
+  const sections = new Map();
+  const seen = new Set();
+  for (const [file, raw] of Object.entries(plugins || {})) {
+    const plugin = raw?.default || raw;
+    if (typeof plugin !== 'function' || plugin.disabled) continue;
+    const label = categoryFor(plugin, file);
+    for (const command of commandsFor(plugin)) {
+      if (seen.has(command)) continue;
+      seen.add(command);
+      if (!sections.has(label)) sections.set(label, []);
+      sections.get(label).push(command);
+    }
+  }
+  const output = [];
+  for (const label of [...RULES.map(rule => rule[0]), 'AUTRES COMMANDES']) {
+    const commands = sections.get(label);
+    if (!commands?.length) continue;
+    commands.sort((a, b) => a.localeCompare(b));
+    output.push('╭─〔 *' + label + '* 〕\n' + commands.map((name, i) =>
+      (i === commands.length - 1 ? '╰' : '│') + '  ' + prefix + name
+    ).join('\n'));
+  }
+  const up = Math.floor(process.uptime());
+  const pad = n => String(n).padStart(2, '0');
+  const runtime = pad(Math.floor(up / 3600)) + ':' +
+    pad(Math.floor(up / 60) % 60) + ':' + pad(up % 60);
+  const fence = String.fromCharCode(96).repeat(3);
+  return [
+    fence + BANNER + fence,
+    '╭━━〔 *AKIRA V3* 〕━━╮',
+    '│  Owner : Son Altesse',
+    '│  Prefix : ' + prefix,
+    '│  Commandes : ' + seen.size,
+    '│  Runtime : ' + runtime,
+    '╰━━━━━━━━━━━━╯',
+    ...output,
+    '*AKIRA V3*  •  Tape ' + prefix + 'menu pour revoir les commandes.',
+  ].join('\n\n');
+}
+
+const handler = async (m, { conn, usedPrefix }) => {
+  const prefix = typeof usedPrefix === 'string' && usedPrefix.length < 5 ? usedPrefix : '.';
+  const menu = buildAkiraMenu(global.plugins, prefix);
+  // Image et texte separes pour eviter la limite des legendes WhatsApp.
+  try {
+    await conn.sendMessage(m.chat, {
+      image: { url: 'https://files.catbox.moe/9fi9ue.jpg' },
+      caption: '*AKIRA V3*  •  L’univers des commandes.\nChoisis ta categorie ci-dessous.',
+    }, { quoted: m });
+  } catch (error) {
+    console.warn('[AKIRA MENU] Image indisponible:', error?.message || error);
+  }
+  return conn.sendMessage(m.chat, { text: menu }, { quoted: m });
+};
+handler.help = ['menu'];
+handler.tags = ['main'];
+handler.command = ['menu', 'help', 'h', 'commands'];
+export default handler;
