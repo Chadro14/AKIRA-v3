@@ -1,4 +1,4 @@
-// AKIRA V3 — menu unique, classe par commandes effectivement chargees.
+// AKIRA V3 — menu par catégories, alimenté par les commandes chargées.
 const BANNER = [
   '██╗  ██╗ █████╗ ██╗  ██╗██╗██████╗  █████╗',
   '██║ ██╔╝██╔══██╗██║ ██╔╝██║██╔══██╗██╔══██╗',
@@ -27,6 +27,18 @@ const RULES = [
   ['PROPRIETAIRE', ['owner', 'rowner', 'creator', 'mods']],
 ];
 const VALID = /^[a-z0-9][a-z0-9_-]{0,48}$/i;
+const LIST_GROUPS = [
+  ['infos', 'Informations', ['INFORMATIONS']],
+  ['groupes', 'Groupes', ['GROUPES']],
+  ['medias', 'Médias et téléchargements', ['TELECHARGEMENTS', 'AUDIO & MUSIQUE', 'MEDIAS & CONVERSION']],
+  ['stickers', 'Stickers et logos', ['STICKERS', 'LOGOS & TEXTE']],
+  ['jeux', 'Jeux et divertissement', ['JEUX', 'ANIME & PERSONNAGES', 'DIVERTISSEMENT']],
+  ['economie', 'Économie', ['ECONOMIE']],
+  ['outils', 'Outils et IA', ['OUTILS', 'RECHERCHE', 'INTELLIGENCE ARTIFICIELLE', 'AUTRES COMMANDES']],
+  ['owner', 'Propriétaire', ['PROPRIETAIRE']],
+];
+
+const MENU_IMAGE = 'https://files.catbox.moe/9fi9ue.jpg';
 
 function regexOptions(pattern) {
   if (!(pattern instanceof RegExp)) return [];
@@ -79,7 +91,7 @@ function categoryFor(plugin, file) {
   return 'AUTRES COMMANDES';
 }
 
-export function buildAkiraMenu(plugins, prefix = '.') {
+function collectCommands(plugins) {
   const sections = new Map();
   const seen = new Set();
   for (const [file, raw] of Object.entries(plugins || {})) {
@@ -93,15 +105,21 @@ export function buildAkiraMenu(plugins, prefix = '.') {
       sections.get(label).push(command);
     }
   }
-  const output = [];
-  for (const label of [...RULES.map(rule => rule[0]), 'AUTRES COMMANDES']) {
+  for (const commands of sections.values()) commands.sort((a, b) => a.localeCompare(b));
+  return sections;
+}
+
+function formatSections(sections, labels, prefix) {
+  return labels.filter(label => sections.has(label)).map(label => {
     const commands = sections.get(label);
-    if (!commands?.length) continue;
-    commands.sort((a, b) => a.localeCompare(b));
-    output.push('╭─〔 *' + label + '* 〕\n' + commands.map((name, i) =>
+    return '╭─〔 *' + label + '* 〕\n' + commands.map((name, i) =>
       (i === commands.length - 1 ? '╰' : '│') + '  ' + prefix + name
-    ).join('\n'));
-  }
+    ).join('\n');
+  });
+}
+
+function formatHeader(sections, prefix) {
+  const total = [...sections.values()].reduce((count, commands) => count + commands.length, 0);
   const up = Math.floor(process.uptime());
   const pad = n => String(n).padStart(2, '0');
   const runtime = pad(Math.floor(up / 3600)) + ':' +
@@ -112,28 +130,113 @@ export function buildAkiraMenu(plugins, prefix = '.') {
     '╭━━〔 *AKIRA V3* 〕━━╮',
     '│  Owner : Son Altesse',
     '│  Prefix : ' + prefix,
-    '│  Commandes : ' + seen.size,
+    '│  Commandes : ' + total,
     '│  Runtime : ' + runtime,
     '╰━━━━━━━━━━━━╯',
-    ...output,
-    '*AKIRA V3*  •  Tape ' + prefix + 'menu pour revoir les commandes.',
+  ].join('\n');
+}
+
+export function buildAkiraMenu(plugins, prefix = '.') {
+  const sections = collectCommands(plugins);
+  return [
+    formatHeader(sections, prefix),
+    ...formatSections(sections, [...RULES.map(([label]) => label), 'AUTRES COMMANDES'], prefix),
   ].join('\n\n');
 }
 
-const handler = async (m, { conn, usedPrefix }) => {
-  const prefix = typeof usedPrefix === 'string' && usedPrefix.length < 5 ? usedPrefix : '.';
-  const menu = buildAkiraMenu(global.plugins, prefix);
-  // Image et texte separes pour eviter la limite des legendes WhatsApp.
+export function buildCategoryList(plugins, prefix = '.') {
+  const sections = collectCommands(plugins);
+  const rows = LIST_GROUPS.filter(([, , labels]) => labels.some(label => sections.has(label)))
+    .map(([key, title]) => ({ title, id: `${prefix}menu ${key}` }));
+  const text = [
+    formatHeader(sections, prefix),
+    'Choisis une catégorie dans la liste ou tape sa commande.',
+    ...rows.map(row => `${row.title} · ${row.id}`),
+    `Toutes les commandes · ${prefix}allmenu`,
+  ].join('\n');
+  return { rows, text };
+}
+
+function menuPrefix(usedPrefix) {
+  return typeof usedPrefix === 'string' && usedPrefix.length < 5 ? usedPrefix : '.';
+}
+
+async function sendCategoryList(conn, m, rows, text) {
+  const { generateWAMessageFromContent, prepareWAMessageMedia } =
+    await import('@whiskeysockets/baileys');
+  let media;
   try {
-    await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/9fi9ue.jpg' },
-      caption: '*AKIRA V3*  •  L’univers des commandes.\nChoisis ta categorie ci-dessous.',
-    }, { quoted: m });
+    media = await prepareWAMessageMedia({ image: { url: MENU_IMAGE } }, {
+      upload: conn.waUploadToServer,
+    });
   } catch (error) {
     console.warn('[AKIRA MENU] Image indisponible:', error?.message || error);
   }
-  return conn.sendMessage(m.chat, { text: menu }, { quoted: m });
+  const message = generateWAMessageFromContent(m.chat, {
+    viewOnceMessage: {
+      message: {
+        messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 },
+        interactiveMessage: {
+          header: { title: 'AKIRA V3', ...media, hasMediaAttachment: Boolean(media?.imageMessage) },
+          body: { text },
+          nativeFlowMessage: {
+            buttons: [{
+              name: 'single_select',
+              buttonParamsJson: JSON.stringify({
+                title: 'Voir les catégories',
+                sections: [{ title: 'Commandes AKIRA V3', rows }],
+              }),
+            }],
+          },
+        },
+      },
+    },
+  }, { userJid: conn.user?.jid || conn.user?.id, quoted: m });
+  return conn.relayMessage(m.chat, message.message, { messageId: message.key.id });
+}
+
+const handler = async (m, { conn, usedPrefix, args = [] }) => {
+  const prefix = menuPrefix(usedPrefix);
+  const requested = args[0]?.toLowerCase();
+  const group = LIST_GROUPS.find(([key]) => key === requested);
+  if (group) {
+    const [, title, labels] = group;
+    const formatted = formatSections(collectCommands(global.plugins), labels, prefix);
+    const text = formatted.length
+      ? [`*AKIRA V3 · ${title}*`, ...formatted].join('\n\n')
+      : `Aucune commande disponible dans cette catégorie. Tape ${prefix}menu.`;
+    return conn.sendMessage(m.chat, { text }, { quoted: m });
+  }
+  const { rows, text } = buildCategoryList(global.plugins, prefix);
+  if (rows.length && typeof conn.relayMessage === 'function') {
+    try {
+      return await sendCategoryList(conn, m, rows, text);
+    } catch (error) {
+      console.warn('[AKIRA MENU] Liste interactive indisponible:', error?.message || error);
+    }
+  }
+  return conn.sendMessage(m.chat, { text }, { quoted: m });
 };
+
+handler.all = function readCategorySelection(m) {
+  const response = m.message?.interactiveResponseMessage ??
+    (m.mtype === 'interactiveResponseMessage' ? m.msg : undefined);
+  const nativeFlow = response?.nativeFlowResponseMessage;
+  if (nativeFlow?.name !== 'single_select' || typeof nativeFlow.paramsJson !== 'string') return;
+  let id;
+  try {
+    ({ id } = JSON.parse(nativeFlow.paramsJson));
+  } catch {
+    return;
+  }
+  const selected = typeof id === 'string' && /^[^\w\s]{0,4}menu ([a-z]+)$/.exec(id);
+  if (selected && LIST_GROUPS.some(([key]) => key === selected[1])) m.text = id;
+};
+
+export function sendFullMenu(m, { conn, usedPrefix }) {
+  const text = buildAkiraMenu(global.plugins, menuPrefix(usedPrefix));
+  return conn.sendMessage(m.chat, { text }, { quoted: m });
+}
 handler.help = ['menu'];
 handler.tags = ['main'];
 handler.command = ['menu', 'help', 'h', 'commands'];
